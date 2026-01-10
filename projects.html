@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Projects | Walid - Senior Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0a0a0a",
+                        "accent-violet": "#8b5cf6",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .mesh-gradient {
+            background: radial-gradient(circle at 20% 20%, rgba(37, 106, 244, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+    <div class="max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                <span class="material-symbols-outlined">terminal</span>
+            </div>
+            <a href="index.html" class="text-lg font-bold tracking-tight hover:text-primary transition-colors">Walid</a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html" data-en="Home" data-fr="Accueil">Accueil</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#skills" data-en="Skills" data-fr="Compétences">Compétences</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#experience" data-en="Experience" data-fr="Expérience">Expérience</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#contact" data-en="Contact" data-fr="Contact">Contact</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button id="lang-toggle" onclick="switchLanguage()" class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium hover:bg-white/10 transition-colors">
+                FR
+            </button>
+            <button id="mobile-share-btn" class="md:hidden p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors" title="Share Contact">
+                <span class="material-symbols-outlined">share</span>
+            </button>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span class="text-[11px] font-bold text-primary uppercase tracking-wider" data-en="Available for hire" data-fr="Disponible pour embauche">Disponible pour embauche</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 hidden md:hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+    <div class="relative ml-auto h-full w-full max-w-sm bg-background-light dark:bg-background-dark border-l border-white/10">
+        <div class="flex items-center justify-between p-6 border-b border-white/10">
+            <h3 class="text-lg font-bold">Menu</h3>
+            <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="p-6">
+            <nav class="space-y-4">
+                <a href="index.html" class="block py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium" data-en="Home" data-fr="Accueil" onclick="closeMobileMenu()">Accueil</a>
+                <a href="index.html#skills" class="block py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium" data-en="Skills" data-fr="Compétences" onclick="closeMobileMenu()">Compétences</a>
+                <a href="index.html#experience" class="block py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium" data-en="Experience" data-fr="Expérience" onclick="closeMobileMenu()">Expérience</a>
+                <a href="index.html#contact" class="block py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium" data-en="Contact" data-fr="Contact" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+            <div class="mt-8 pt-6 border-t border-white/10">
+                <button id="mobile-share-menu-btn" class="w-full flex items-center gap-3 py-3 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium">
+                    <span class="material-symbols-outlined">share</span>
+                    <span data-en="Share Contact" data-fr="Partager Contact">Partager Contact</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="pt-24 pb-20 mesh-gradient min-h-screen">
+    <!-- Projects Gallery -->
+    <section class="max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+        <div class="text-center mb-16">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-6">
+                <span data-en="My" data-fr="Mes">Mes</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-violet" data-en="Projects" data-fr="Projets">Projets</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-slate-500 dark:text-slate-400" data-en="A showcase of mobile applications and solutions I've built throughout my career." data-fr="Une vitrine des applications mobiles et solutions que j'ai construites tout au long de ma carrière.">
+                Une vitrine des applications mobiles et solutions que j'ai construites tout au long de ma carrière.
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            <!-- Peoplin -->
+            <div class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all">
+                <div class="aspect-video bg-cover bg-center bg-slate-800 flex items-center justify-center">
+                    <img src="https://via.placeholder.com/200x150?text=Peoplin" alt="Peoplin Logo" class="max-h-20">
+                </div>
+                <div class="p-6">
+                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block" data-en="Mobile App" data-fr="Application Mobile">Application Mobile</span>
+                    <h3 class="text-xl font-bold mb-3">Peoplin</h3>
+                    <p class="text-slate-400 text-sm mb-4" data-en="Covoiturage application for iOS." data-fr="Application de covoiturage pour iOS.">Application de covoiturage pour iOS.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-orange-400" style="font-size: 14px;">code</span>
+                            <span>Swift</span>
+                        </div>
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-blue-400" style="font-size: 14px;">phone_iphone</span>
+                            <span>iOS</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal('peoplin')" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors" data-en="View Details" data-fr="Voir les Détails">Voir les Détails</button>
+                </div>
+            </div>
+
+            <!-- Appy-me -->
+            <div class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all">
+                <div class="aspect-video bg-cover bg-center bg-slate-800 flex items-center justify-center">
+                    <img src="https://play-lh.googleusercontent.com/994qv4uhoNcqMGqnA5YO2BV-I1naS7JPjgjgY2IAvST0Q9eVEMX41CsKsgoe7NOLfLDA" alt="Appy-me Logo" class="max-h-20">
+                </div>
+                <div class="p-6">
+                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block" data-en="Full Stack" data-fr="Full Stack">Full Stack</span>
+                    <h3 class="text-xl font-bold mb-3">Appy-me</h3>
+                    <p class="text-slate-400 text-sm mb-4" data-en="Entertainment app with iOS and backend." data-fr="Application de divertissement avec iOS et backend.">Application de divertissement avec iOS et backend.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-orange-400" style="font-size: 14px;">code</span>
+                            <span>Swift</span>
+                        </div>
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-green-400" style="font-size: 14px;">dns</span>
+                            <span>Vapor</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal('ouicoding')" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors" data-en="View Details" data-fr="Voir les Détails">Voir les Détails</button>
+                </div>
+            </div>
+
+            <!-- Mercedes-Benz Service Maroc -->
+            <div class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all">
+                <div class="aspect-video bg-cover bg-center bg-slate-800 flex items-center justify-center">
+                    <img src="https://turbologo.com/articles/wp-content/uploads/2019/11/Mercedes-Benz-logo-today.png" alt="Mercedes-Benz Logo" class="max-h-20">
+                </div>
+                <div class="p-6">
+                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">Mobile App</span>
+                    <h3 class="text-xl font-bold mb-3">Mercedes-Benz Service Maroc</h3>
+                    <p class="text-slate-400 text-sm mb-4" data-en="SAV app for appointments and services." data-fr="Application SAV pour rendez-vous et services.">Application SAV pour rendez-vous et services.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-orange-400" style="font-size: 14px;">code</span>
+                            <span>Swift</span>
+                        </div>
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-purple-400" style="font-size: 14px;">smartphone</span>
+                            <span>UIKit</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal('mercedes')" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors" data-en="View Details" data-fr="Voir les Détails">Voir les Détails</button>
+                </div>
+            </div>
+
+            <!-- Hit-radio Player -->
+            <div class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all">
+                <div class="aspect-video bg-cover bg-center bg-slate-800 flex items-center justify-center">
+                    <img src="https://play-lh.googleusercontent.com/lM-oZTExZEaZxObeKXmGuIof7BiV3YGqAe133CjxVWoj6CryurHvOnM4zMukxzdXifQ" alt="Hit-Radio Logo" class="max-h-20">
+                </div>
+                <div class="p-6">
+                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">Mobile App</span>
+                    <h3 class="text-xl font-bold mb-3">Hit-radio Player</h3>
+                    <p class="text-slate-400 text-sm mb-4" data-en="Radio player with sharing options." data-fr="Lecteur radio avec options de partage.">Lecteur radio avec options de partage.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-red-400" style="font-size: 14px;">code</span>
+                            <span>Objective-C</span>
+                        </div>
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-purple-400" style="font-size: 14px;">smartphone</span>
+                            <span>UIKit</span>
+                        </div>
+                    </div>
+                    </div>
+                    <button onclick="openModal('hitradio')" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors" data-en="View Details" data-fr="Voir les Détails">Voir les Détails</button>
+                </div>
+            </div>
+
+            <!-- AirFrance KLM -->
+            <div class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all">
+                <div class="aspect-video bg-cover bg-center bg-slate-800 flex items-center justify-center">
+                    <img src="https://amadeus.com/content/dam/amadeus/images/en/blog/2020/09/afklm-group-tail-logos-high-res.jpg" alt="AirFrance KLM Logo" class="max-h-20">
+                </div>
+                <div class="p-6">
+                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block" data-en="B2B Mobile App" data-fr="Application Mobile B2B">Application Mobile B2B</span>
+                    <h3 class="text-xl font-bold mb-3">AirFrance KLM</h3>
+                    <p class="text-slate-400 text-sm mb-4" data-en="Business-to-business mobile solutions." data-fr="Solutions mobiles business-to-business.">Solutions mobiles business-to-business.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-orange-400" style="font-size: 14px;">code</span>
+                            <span>Swift</span>
+                        </div>
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-red-400" style="font-size: 14px;">code</span>
+                            <span>Objective-C</span>
+                        </div>
+                    </div>
+                    </div>
+                    <button onclick="openModal('airfrance')" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors" data-en="View Details" data-fr="Voir les Détails">Voir les Détails</button>
+                </div>
+            </div>
+
+            <!-- Attijariwafa Bank -->
+            <div class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-all">
+                <div class="aspect-video bg-cover bg-center bg-slate-800 flex items-center justify-center">
+                    <img src="https://play-lh.googleusercontent.com/zgOpMMUPBhc10hGOVPQ6LjFVY4ZwaVyh5D2LA7xSg8Y1rx6NyOXD0rILBi2CZEOYz-k" alt="Attijariwafa Bank Logo" class="max-h-20">
+                </div>
+                <div class="p-6">
+                    <span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block" data-en="Banking Apps" data-fr="Applications Bancaires">Applications Bancaires</span>
+                    <h3 class="text-xl font-bold mb-3">Attijariwafa Bank</h3>
+                    <p class="text-slate-400 text-sm mb-4" data-en="Mobile banking applications." data-fr="Applications mobiles bancaires.">Applications mobiles bancaires.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-blue-400" style="font-size: 14px;">widgets</span>
+                            <span>SwiftUI</span>
+                        </div>
+                        <div class="flex items-center gap-1 px-2 py-1 bg-white/5 rounded text-xs">
+                            <span class="material-symbols-outlined text-purple-400" style="font-size: 14px;">smartphone</span>
+                            <span>UIKit</span>
+                        </div>
+                    </div>
+                    </div>
+                    <button onclick="openModal('attijari')" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition-colors" data-en="View Details" data-fr="Voir les Détails">Voir les Détails</button>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <!-- Modal -->
+        <div id="modal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
+            <div class="bg-background-light dark:bg-background-dark rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-6">
+                        <h3 id="modal-title" class="text-2xl font-bold"></h3>
+                        <button onclick="closeModal()" class="text-slate-400 hover:text-white">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <div id="modal-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    const projectData = {
+        peoplin: {
+            title: { en: "Peoplin - Covoiturage Application", fr: "Peoplin - Application de Covoiturage" },
+            content: {
+                en: `
+                    <p class="text-slate-400 mb-4">Application de covoiturage for iOS. Developed as a freelance project.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Features</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Ride sharing functionality</li>
+                                <li>• Interactive notifications for rides</li>
+                                <li>• App Store publication</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">phone_iphone</span>
+                                    <span>iOS SDK</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                fr: `
+                    <p class="text-slate-400 mb-4">Application de covoiturage pour iOS. Développée en freelance.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Fonctionnalités Clés</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Fonctionnalité de partage de trajet</li>
+                                <li>• Notifications interactives pour les courses</li>
+                                <li>• Publication sur App Store</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Pile Technologique</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">phone_iphone</span>
+                                    <span>iOS SDK</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        },
+        ouicoding: {
+            title: { en: "Appy-me - Entertainment App", fr: "Appy-me - Application de Divertissement" },
+            content: {
+                en: `
+                    <p class="text-slate-400 mb-4">Full stack entertainment application with iOS frontend and backend development.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Features</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• iOS app development</li>
+                                <li>• Backend with Vapor</li>
+                                <li>• Web services evolution</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">dns</span>
+                                    <span>Vapor</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">hub</span>
+                                    <span>SwiftNIO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                fr: `
+                    <p class="text-slate-400 mb-4">Application de divertissement full stack avec développement iOS et backend.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Fonctionnalités Clés</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Développement d'app iOS</li>
+                                <li>• Backend avec Vapor</li>
+                                <li>• Évolution des services web</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Pile Technologique</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">dns</span>
+                                    <span>Vapor</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">hub</span>
+                                    <span>SwiftNIO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        },
+        mercedes: {
+            title: { en: "Mercedes-Benz Service Maroc - SAV App", fr: "Mercedes-Benz Service Maroc - App SAV" },
+            content: {
+                en: `
+                    <p class="text-slate-400 mb-4">Service appointment application allowing customers to book services, access boutique, maps, maintenance records, and FAQ.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Features</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Appointment booking</li>
+                                <li>• Service selection</li>
+                                <li>• Boutique access</li>
+                                <li>• Maps integration</li>
+                                <li>• Maintenance records</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">smartphone</span>
+                                    <span>UIKit</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">account_tree</span>
+                                    <span>MVC</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                fr: `
+                    <p class="text-slate-400 mb-4">Application de prise de rendez-vous de service permettant aux clients de réserver des services, accéder à la boutique, cartes, enregistrements de maintenance et FAQ.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Fonctionnalités Clés</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Réservation de rendez-vous</li>
+                                <li>• Sélection de service</li>
+                                <li>• Accès boutique</li>
+                                <li>• Intégration cartes</li>
+                                <li>• Enregistrements de maintenance</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Pile Technologique</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">smartphone</span>
+                                    <span>UIKit</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">account_tree</span>
+                                    <span>MVC</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        },
+        hitradio: {
+            title: { en: "Hit-radio Player - Radio App", fr: "Hit-radio Player - App Radio" },
+            content: {
+                en: `
+                    <p class="text-slate-400 mb-4">Radio player application with maintenance of sharing options and UI improvements.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Features</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Radio streaming</li>
+                                <li>• Sharing options</li>
+                                <li>• UI maintenance</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Objective-C</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">smartphone</span>
+                                    <span>UIKit</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">account_tree</span>
+                                    <span>MVC</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                fr: `
+                    <p class="text-slate-400 mb-4">Application lecteur radio avec maintenance des options de partage et améliorations UI.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Fonctionnalités Clés</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Streaming radio</li>
+                                <li>• Options de partage</li>
+                                <li>• Maintenance UI</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Pile Technologique</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Objective-C</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">smartphone</span>
+                                    <span>UIKit</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">account_tree</span>
+                                    <span>MVC</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        },
+        airfrance: {
+            title: { en: "AirFrance KLM - B2B Mobile Solutions", fr: "AirFrance KLM - Solutions Mobiles B2B" },
+            content: {
+                en: `
+                    <p class="text-slate-400 mb-4">Business-to-business mobile applications developed at CGI for AirFrance KLM.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Features</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Evolution and maintenance of UIKit functionalities</li>
+                                <li>• Refonte of components in SwiftUI</li>
+                                <li>• Mise en place of new architecture</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">widgets</span>
+                                    <span>SwiftUI</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Objective-C</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                fr: `
+                    <p class="text-slate-400 mb-4">Applications mobiles business-to-business développées chez CGI pour AirFrance KLM.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Fonctionnalités Clés</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Évolution et maintenance des fonctionnalités UIKit</li>
+                                <li>• Refonte des composants en SwiftUI</li>
+                                <li>• Mise en place de nouvelle architecture</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Pile Technologique</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">widgets</span>
+                                    <span>SwiftUI</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Objective-C</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        },
+        attijari: {
+            title: { en: "Attijariwafa Bank - Banking Applications", fr: "Attijariwafa Bank - Applications Bancaires" },
+            content: {
+                en: `
+                    <p class="text-slate-400 mb-4">Mobile banking applications developed at Babel Group for Attijariwafa Bank.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Key Features</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Code review</li>
+                                <li>• Complete refonte in SwiftUI</li>
+                                <li>• Implementation of new client features</li>
+                                <li>• Evolution and maintenance of AWB and LBK apps</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">widgets</span>
+                                    <span>SwiftUI</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">smartphone</span>
+                                    <span>UIKit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                fr: `
+                    <p class="text-slate-400 mb-4">Applications mobiles bancaires développées chez Babel Group pour Attijariwafa Bank.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Fonctionnalités Clés</h4>
+                            <ul class="text-slate-400 text-sm space-y-1">
+                                <li>• Revue de code</li>
+                                <li>• Refonte complète en SwiftUI</li>
+                                <li>• Implémentation de nouvelles fonctionnalités client</li>
+                                <li>• Évolution et maintenance des apps AWB et LBK</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Pile Technologique</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">code</span>
+                                    <span>Swift</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">widgets</span>
+                                    <span>SwiftUI</span>
+                                </div>
+                                <div class="flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">smartphone</span>
+                                    <span>UIKit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        }
+    };
+
+    function openModal(projectId) {
+        const data = projectData[projectId];
+        if (data) {
+            const title = data.title[currentLang] || data.title.en;
+            const content = data.content[currentLang] || data.content.en;
+            
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-content').innerHTML = content;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // Language switching
+    let currentLang = 'fr'; // Default to French
+
+    function switchLanguage() {
+        currentLang = currentLang === 'fr' ? 'en' : 'fr';
+        
+        // Update button text
+        const langBtn = document.getElementById('lang-toggle');
+        if (langBtn) {
+            langBtn.textContent = currentLang.toUpperCase();
+        }
+        
+        // Update all elements with data attributes
+        document.querySelectorAll('[data-' + currentLang + ']').forEach(element => {
+            element.textContent = element.getAttribute('data-' + currentLang);
+        });
+        
+        // Update document language
+        document.documentElement.lang = currentLang;
+        
+        // Update page title
+        const title = currentLang === 'fr' ? 'Walid | Projets' : 'Walid | Projects';
+        document.title = title;
+    }
+
+    // Initialize language to French
+    document.addEventListener('DOMContentLoaded', function() {
+        switchLanguage(); // This will switch from 'en' to 'fr'
+    });
+
+    // Mobile Menu Functionality
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+
+    function openMobileMenu() {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+
+    // NFC/Contact Sharing Functionality
+    function shareContact() {
+        const contactData = {
+            name: 'Walid',
+            title: currentLang === 'fr' ? 'Ingénieur Logiciel Senior' : 'Senior Software Engineer',
+            email: 'contact@walid.dev',
+            phone: '+212-XXX-XXXXXX', // Replace with actual phone
+            website: window.location.origin,
+            linkedin: 'https://linkedin.com/in/waliddev1',
+            github: 'https://github.com/waliddev1'
+        };
+
+        const vCard = `BEGIN:VCARD
+VERSION:3.0
+FN:${contactData.name}
+TITLE:${contactData.title}
+EMAIL:${contactData.email}
+TEL:${contactData.phone}
+URL:${contactData.website}
+URL;TYPE=LinkedIn:${contactData.linkedin}
+URL;TYPE=GitHub:${contactData.github}
+END:VCARD`;
+
+        // Try Web Share API first
+        if (navigator.share) {
+            navigator.share({
+                title: currentLang === 'fr' ? 'Contact Walid' : 'Contact Walid',
+                text: currentLang === 'fr' ? 'Découvrez mon portfolio et contactez-moi' : 'Check out my portfolio and get in touch',
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            // Fallback: Copy contact info to clipboard
+            navigator.clipboard.writeText(`${contactData.name}\n${contactData.title}\nEmail: ${contactData.email}\nSite: ${contactData.website}\nLinkedIn: ${contactData.linkedin}\nGitHub: ${contactData.github}`).then(() => {
+                // Show success message
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg';
+                notification.textContent = currentLang === 'fr' ? 'Informations de contact copiées!' : 'Contact information copied!';
+                document.body.appendChild(notification);
+                setTimeout(() => document.body.removeChild(notification), 3000);
+            }).catch(() => {
+                // Fallback: Download vCard
+                const blob = new Blob([vCard], { type: 'text/vcard' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'walid-contact.vcf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        }
+    }
+
+    // Add event listeners for share buttons
+    document.getElementById('mobile-share-btn').addEventListener('click', shareContact);
+    document.getElementById('mobile-share-menu-btn').addEventListener('click', () => {
+        closeMobileMenu();
+        shareContact();
+    });
+</script>
+</body>
+</html>

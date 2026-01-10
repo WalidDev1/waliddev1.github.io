@@ -1,168 +1,453 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walid - iOS Developer Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Walid | Senior Software Engineer Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0a0a0a",
+                        "accent-violet": "#8b5cf6",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .mesh-gradient {
+            background: radial-gradient(circle at 20% 20%, rgba(37, 106, 244, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">Walid</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+    <div class="max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight">Walid</h2>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="projects.html" data-en="Projects" data-fr="Projets">Projets</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#skills" data-en="Skills" data-fr="Compétences">Compétences</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#experience" data-en="Experience" data-fr="Expérience">Expérience</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button id="lang-toggle" class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium hover:bg-white/10 transition-colors">
+    FR
+</button>
+<!-- Mobile NFC Share Button -->
+<button id="mobile-share-btn" class="md:hidden p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors" title="Share Contact">
+    <span class="material-symbols-outlined">share</span>
+</button>
+<!-- Mobile Menu Button -->
+<button id="mobile-menu-btn" class="md:hidden p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+    <span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
 
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm Walid</h1>
-            <p>iOS Developer passionate about creating beautiful and functional mobile apps</p>
-            <a href="#projects" class="cta-button">View My Work</a>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 hidden md:hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+    <div class="relative ml-auto h-full w-full max-w-sm bg-background-light dark:bg-background-dark border-l border-white/10">
+        <div class="flex items-center justify-between p-6 border-b border-white/10">
+            <h3 class="text-lg font-bold">Menu</h3>
+            <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
         </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I'm an experienced iOS developer with a passion for crafting intuitive and engaging mobile experiences. With years of experience in Swift and Objective-C, I specialize in building high-quality apps that users love.</p>
-                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying outdoor activities.</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://via.placeholder.com/300x300?text=Profile+Photo" alt="Walid's Profile">
-                </div>
+        <div class="p-6">
+            <!-- Availability Status -->
+            <div class="flex items-center gap-2 px-3 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span class="text-xs font-bold text-primary uppercase tracking-wider" data-en="Available for hire" data-fr="Disponible pour embauche">Disponible pour embauche</span>
+            </div>
+            <nav class="space-y-4">
+                <a href="projects.html" class="block py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium" data-en="Projects" data-fr="Projets" onclick="closeMobileMenu()">Projets</a>
+                <a href="#skills" class="block py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium" data-en="Skills" data-fr="Compétences" onclick="closeMobileMenu()">Compétences</a>
+                <a href="#experience" class="block py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium" data-en="Experience" data-fr="Expérience" onclick="closeMobileMenu()">Expérience</a>
+                <a href="#contact" class="block py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium" data-en="Contact" data-fr="Contact" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+            <div class="mt-8 pt-6 border-t border-white/10">
+                <button id="mobile-share-menu-btn" class="w-full flex items-center gap-3 py-4 px-4 rounded-lg hover:bg-white/5 transition-colors text-sm font-medium">
+                    <span class="material-symbols-outlined">share</span>
+                    <span data-en="Share Contact" data-fr="Partager Contact">Partager Contact</span>
+                </button>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <section id="skills">
-        <div class="container">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <i class="fab fa-swift"></i>
-                    <h3>Swift</h3>
-                    <p>Expert in modern Swift development</p>
-                </div>
-                <div class="skill-item">
-                    <i class="fab fa-apple"></i>
-                    <h3>iOS SDK</h3>
-                    <p>Proficient with UIKit and SwiftUI</p>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-code"></i>
-                    <h3>Objective-C</h3>
-                    <p>Legacy code maintenance and migration</p>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>UI/UX Design</h3>
-                    <p>Creating beautiful user interfaces</p>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-cloud"></i>
-                    <h3>Cloud Services</h3>
-                    <p>Integration with Firebase, AWS</p>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-tools"></i>
-                    <h3>Tools</h3>
-                    <p>Xcode, Git, CI/CD pipelines</p>
-                </div>
+<main class="pt-24 pb-20 mesh-gradient min-h-screen">
+<!-- Hero Section -->
+<section class="max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 text-center">
+<div class="mb-8">
+<img src="https://avatars.githubusercontent.com/waliddev1" alt="Walid's Profile Picture" class="w-32 h-32 rounded-full mx-auto border-4 border-primary/20 shadow-lg">
+</div>
+<div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-widest uppercase text-slate-400" data-en="Senior Software Engineer" data-fr="Ingénieur Logiciel Senior">
+                Ingénieur Logiciel Senior
             </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250?text=Project+1" alt="Project 1">
+<h1 class="text-4xl sm:text-5xl md:text-7xl font-black leading-tight tracking-tight mb-6 sm:mb-8">
+                <span data-en="I build high-performance" data-fr="Je construis des applications">Je construis des applications</span> <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-violet" data-en="mobile and web apps." data-fr="mobiles et web haute performance.">mobiles et web haute performance.</span>
+</h1>
+<p class="max-w-2xl mx-auto text-lg text-slate-500 dark:text-slate-400 leading-relaxed mb-10" data-en="Specializing in scalable iOS and SaaS solutions with 5+ years of experience delivering robust engineering for high-traffic platforms." data-fr="Spécialisé dans les solutions iOS et SaaS évolutives avec 5+ ans d'expérience dans la livraison d'ingénierie robuste pour les plateformes à fort trafic.">
+                Spécialisé dans les solutions iOS et SaaS évolutives avec 5+ ans d'expérience dans la livraison d'ingénierie robuste pour les plateformes à fort trafic.
+            </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all" data-en="View Projects" data-fr="Voir les Projets">
+                    Voir les Projets
+                </button>
+<button class="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all" data-en="Contact Me" data-fr="Me Contacter">
+                    Me Contacter
+                </button>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="max-w-5xl mx-auto px-6 mb-32">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors">
+<p class="text-slate-400 text-sm font-medium mb-1" data-en="Experience" data-fr="Expérience">Expérience</p>
+<p class="text-3xl font-bold">5+ Years</p>
+<div class="mt-4 h-1 w-12 bg-primary rounded-full group-hover:w-full transition-all duration-500"></div>
+</div>
+<div class="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors">
+<p class="text-slate-400 text-sm font-medium mb-1" data-en="Apps Shipped" data-fr="Apps Livrées">Apps Livrées</p>
+<p class="text-3xl font-bold">30+</p>
+<div class="mt-4 h-1 w-12 bg-primary rounded-full group-hover:w-full transition-all duration-500"></div>
+</div>
+<div class="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors">
+<p class="text-slate-400 text-sm font-medium mb-1" data-en="Leadership" data-fr="Leadership">Leadership</p>
+<p class="text-3xl font-bold" data-en="Senior Level" data-fr="Niveau Senior">Niveau Senior</p>
+<div class="mt-4 h-1 w-12 bg-primary rounded-full group-hover:w-full transition-all duration-500"></div>
+</div>
+</div>
+</section>
+<!-- Featured Project -->
+<section class="max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6 mb-20 sm:mb-32" id="projects">
+<div class="flex items-center justify-between mb-10">
+<h2 class="text-3xl font-bold tracking-tight" data-en="Featured Project" data-fr="Projet Vedette">Projet Vedette</h2>
+<a class="text-primary font-semibold flex items-center gap-2 hover:underline" href="projects.html" data-en="All Projects" data-fr="Tous les Projets">
+                    Tous les Projets <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="group relative overflow-hidden rounded-2xl bg-slate-900 border border-white/10 flex flex-col lg:flex-row">
+<div class="lg:w-1/2 aspect-video bg-cover bg-center" style="background-image: url('https://amadeus.com/content/dam/amadeus/images/en/blog/2020/09/afklm-group-tail-logos-high-res.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+<div class="lg:w-1/2 p-10 flex flex-col justify-center">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-2" data-en="B2B & Enterprise" data-fr="B2B & Entreprise">B2B & Entreprise</span>
+<h3 class="text-2xl font-bold mb-4">AirFrance KLM: Enterprise Solutions</h3>
+<p class="text-slate-400 mb-6 leading-relaxed" data-en="Business-to-business mobile applications developed at CGI. Focused on evolving UIKit functionalities and implementing new SwiftUI architectures for enterprise clients." data-fr="Applications mobiles business-to-business développées chez CGI. Axé sur l'évolution des fonctionnalités UIKit et l'implémentation de nouvelles architectures SwiftUI pour les clients entreprise.">
+                        Applications mobiles business-to-business développées chez CGI. Axé sur l'évolution des fonctionnalités UIKit et l'implémentation de nouvelles architectures SwiftUI pour les clients entreprise.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div>
+<p class="text-white font-bold text-lg">CGI</p>
+<p class="text-slate-500 text-xs" data-en="Company" data-fr="Entreprise">Entreprise</p>
+</div>
+<div>
+<p class="text-white font-bold text-lg">Swift / SwiftUI</p>
+<p class="text-slate-500 text-xs" data-en="Tech Stack" data-fr="Pile Technologique">Pile Technologique</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/80 transition-all" data-en="View Case Study" data-fr="Voir l'Étude de Cas">
+                            Voir l'Étude de Cas
+                        </button>
+<button class="p-3 border border-white/10 rounded-lg hover:bg-white/5">
+<span class="material-symbols-outlined">launch</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech Stack Bento Grid -->
+<section class="max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6 mb-20 sm:mb-32" id="skills">
+<h2 class="text-3xl font-bold tracking-tight mb-10" data-en="Tech Stack" data-fr="Pile Technologique">Pile Technologique</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<!-- Mobile Card -->
+<div class="md:col-span-2 p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between min-h-[240px]">
+<div>
+<span class="material-symbols-outlined text-primary mb-4 text-3xl">smartphone</span>
+<h4 class="text-xl font-bold mb-2" data-en="Mobile Development" data-fr="Développement Mobile">Développement Mobile</h4>
+<p class="text-slate-400 text-sm" data-en="Crafting native experiences with Swift and SwiftUI." data-fr="Création d'expériences natives avec Swift et SwiftUI.">Création d'expériences natives avec Swift et SwiftUI.</p>
+</div>
+<div class="flex flex-wrap gap-2 mt-6">
+                    <div class="flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 text-xs font-medium">
+                        <span class="material-symbols-outlined text-orange-400" style="font-size: 12px;">code</span>
+                        <span>Swift</span>
                     </div>
-                    <div class="project-content">
-                        <h3>E-Commerce App</h3>
-                        <p>A full-featured shopping app with payment integration and real-time inventory.</p>
-                        <div class="project-tech">
-                            <span>Swift</span>
-                            <span>SwiftUI</span>
-                            <span>Firebase</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
+                    <div class="flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 text-xs font-medium">
+                        <span class="material-symbols-outlined text-blue-400" style="font-size: 12px;">widgets</span>
+                        <span>SwiftUI</span>
+                    </div>
+                    <div class="flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 text-xs font-medium">
+                        <span class="material-symbols-outlined text-purple-400" style="font-size: 12px;">sync</span>
+                        <span>Combine</span>
+                    </div>
+                    <div class="flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 text-xs font-medium">
+                        <span class="material-symbols-outlined text-green-400" style="font-size: 12px;">storage</span>
+                        <span>CoreData</span>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250?text=Project+2" alt="Project 2">
-                    </div>
-                    <div class="project-content">
-                        <h3>Fitness Tracker</h3>
-                        <p>Personalized workout plans and progress tracking with health data integration.</p>
-                        <div class="project-tech">
-                            <span>Swift</span>
-                            <span>UIKit</span>
-                            <span>HealthKit</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250?text=Project+3" alt="Project 3">
-                    </div>
-                    <div class="project-content">
-                        <h3>Social Media App</h3>
-                        <p>Connect with friends, share moments, and discover new content.</p>
-                        <div class="project-tech">
-                            <span>Swift</span>
-                            <span>SwiftUI</span>
-                            <span>Core Data</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
+<!-- Backend Card -->
+<div class="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between min-h-[240px]">
+<div>
+<span class="material-symbols-outlined text-accent-violet mb-4 text-3xl">database</span>
+<h4 class="text-xl font-bold mb-2" data-en="Backend" data-fr="Backend">Backend</h4>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-sm text-slate-400">Laravel / PHP</span>
+<span class="text-sm text-slate-400">PostgreSQL</span>
+<span class="text-sm text-slate-400">Redis</span>
+</div>
+</div>
+<!-- Infrastructure -->
+<div class="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between min-h-[240px]">
+<div>
+<span class="material-symbols-outlined text-green-500 mb-4 text-3xl">cloud</span>
+<h4 class="text-xl font-bold mb-2" data-en="DevOps" data-fr="DevOps">DevOps</h4>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-sm text-slate-400">AWS / EC2</span>
+<span class="text-sm text-slate-400">Docker</span>
+<span class="text-sm text-slate-400">CI/CD</span>
+</div>
+</div>
+<!-- Architecture -->
+<div class="md:col-span-2 lg:col-span-1 p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between min-h-[240px]">
+<div>
+<span class="material-symbols-outlined text-orange-400 mb-4 text-3xl">architecture</span>
+<h4 class="text-xl font-bold mb-2" data-en="Architecture" data-fr="Architecture">Architecture</h4>
+</div>
+<p class="text-sm text-slate-400" data-en="Modular design, Clean Architecture, and SOLID principles." data-fr="Conception modulaire, Clean Architecture et principes SOLID.">Conception modulaire, Clean Architecture et principes SOLID.</p>
+</div>
+<!-- Tools -->
+<div class="lg:col-span-3 p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between">
+<div class="flex flex-wrap gap-6 items-center">
+<span class="text-slate-500 font-bold tracking-widest text-xs uppercase" data-en="Daily Tools" data-fr="Outils Quotidien">Outils Quotidien</span>
+<div class="flex gap-8">
+<span class="font-medium">Xcode</span>
+<span class="font-medium">GitLab</span>
+<span class="font-medium">Postman</span>
+<span class="font-medium">Figma</span>
+<span class="font-medium">Jira</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Engineering Values -->
+<section class="max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6 mb-20 sm:mb-32" id="experience">
+<h2 class="text-3xl font-bold tracking-tight mb-12 text-center" data-en="Engineering Philosophy" data-fr="Philosophie d'Ingénierie">Philosophie d'Ingénierie</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="text-center">
+<div class="size-16 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">code</span>
+</div>
+<h4 class="text-xl font-bold mb-3" data-en="Clean Code" data-fr="Code Propre">Code Propre</h4>
+<p class="text-slate-400 text-sm leading-relaxed" data-en="Prioritizing maintainability and readability for long-term scalability and team collaboration." data-fr="Prioriser la maintenabilité et la lisibilité pour l'évolutivité à long terme et la collaboration d'équipe.">Prioriser la maintenabilité et la lisibilité pour l'évolutivité à long terme et la collaboration d'équipe.</p>
+</div>
+<div class="text-center">
+<div class="size-16 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">speed</span>
+</div>
+<h4 class="text-xl font-bold mb-3" data-en="Performance" data-fr="Performance">Performance</h4>
+<p class="text-slate-400 text-sm leading-relaxed" data-en="Optimization at the core. Ensuring 60fps mobile animations and sub-second API responses." data-fr="L'optimisation au cœur. Assurer des animations mobiles 60fps et des réponses API sub-secondes.">L'optimisation au cœur. Assurer des animations mobiles 60fps et des réponses API sub-secondes.</p>
+</div>
+<div class="text-center">
+<div class="size-16 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">ads_click</span>
+</div>
+<h4 class="text-xl font-bold mb-3" data-en="User-Centric" data-fr="Centré Utilisateur">Centré Utilisateur</h4>
+<p class="text-slate-400 text-sm leading-relaxed" data-en="Technology is a means to an end. Every line of code serves the end-user experience." data-fr="La technologie est un moyen pour une fin. Chaque ligne de code sert l'expérience de l'utilisateur final.">La technologie est un moyen pour une fin. Chaque ligne de code sert l'expérience de l'utilisateur final.</p>
+</div>
+</div>
+</section>
+<!-- Footer / CTA -->
+<footer class="max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6" id="contact">
+<div class="p-12 md:p-20 rounded-3xl bg-gradient-to-br from-primary to-accent-violet text-center">
+<h2 class="text-4xl md:text-5xl font-black text-white mb-6" data-en="Let's build something great together." data-fr="Construisons quelque chose de génial ensemble.">Construisons quelque chose de génial ensemble.</h2>
+<p class="text-white/80 text-lg mb-10 max-w-xl mx-auto" data-en="Currently open to new senior opportunities and technical leadership roles." data-fr="Actuellement ouvert à de nouvelles opportunités senior et rôles de leadership technique.">
+                    Actuellement ouvert à de nouvelles opportunités senior et rôles de leadership technique.
+                </p>
+<div class="flex flex-wrap justify-center gap-4">
+<button class="px-8 py-4 bg-white text-primary font-bold rounded-xl hover:bg-slate-100 transition-all" data-en="Get In Touch" data-fr="Entrer en Contact">
+                        Entrer en Contact
+                    </button>
+<a href="cv_walid_2025.pdf" download class="px-8 py-4 bg-black/20 text-white font-bold rounded-xl hover:bg-black/30 transition-all border border-white/20 inline-block text-center" data-en="Download CV" data-fr="Télécharger CV">
+                        Télécharger CV
+                    </a>
+</div>
+</div>
+<div class="mt-20 py-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="size-6 bg-white/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">terminal</span>
+</div>
+<span class="text-slate-500 text-sm">© 2024 Walid Engineering. All rights reserved.</span>
+</div>
+<div class="flex items-center gap-8">
+<a class="text-slate-400 hover:text-white transition-colors flex items-center gap-2" href="https://github.com/waliddev1">
+<span class="material-symbols-outlined text-lg">link</span> GitHub
+                    </a>
+<a class="text-slate-400 hover:text-white transition-colors flex items-center gap-2" href="https://linkedin.com/in/walid">
+<span class="material-symbols-outlined text-lg">link</span> LinkedIn
+                    </a>
+<a class="text-slate-400 hover:text-white transition-colors flex items-center gap-2" href="https://twitter.com/waliddev1">
+<span class="material-symbols-outlined text-lg">link</span> Twitter
+                    </a>
+</div>
+</div>
+</footer>
+</main>
 
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <div class="contact-content">
-                <p>Let's work together! Feel free to reach out for collaborations or opportunities.</p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>walid@example.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <span>linkedin.com/in/walid</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <span>github.com/waliddev1</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+    let currentLang = 'fr'; // Default to French
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Walid. All rights reserved.</p>
-        </div>
-    </footer>
+    function switchLanguage() {
+        currentLang = currentLang === 'fr' ? 'en' : 'fr';
+        
+        // Update button text
+        const langBtn = document.getElementById('lang-toggle');
+        langBtn.textContent = currentLang.toUpperCase();
+        
+        // Update all elements with data attributes
+        document.querySelectorAll('[data-' + currentLang + ']').forEach(element => {
+            element.textContent = element.getAttribute('data-' + currentLang);
+        });
+        
+        // Update document language
+        document.documentElement.lang = currentLang;
+        
+        // Update title
+        const title = currentLang === 'fr' ? 'Walid | Portfolio Ingénieur Logiciel Senior' : 'Walid | Senior Software Engineer Portfolio';
+        document.title = title;
+    }
 
-    <script src="script.js"></script>
-</body>
-</html>
+    // Initialize with French
+    document.addEventListener('DOMContentLoaded', function() {
+        switchLanguage(); // This will switch from fr to en, then back to fr? Wait, no.
+        // Since default is fr, and switchLanguage toggles, I need to set it properly.
+        
+        // Actually, let's set currentLang to 'en' initially, then call switchLanguage to set to 'fr'
+        currentLang = 'en';
+        switchLanguage();
+    });
+
+    // Add click event to language toggle
+    document.getElementById('lang-toggle').addEventListener('click', switchLanguage);
+
+    // Mobile Menu Functionality
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+
+    function openMobileMenu() {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+
+    // NFC/Contact Sharing Functionality
+    function shareContact() {
+        const contactData = {
+            name: 'Walid',
+            title: currentLang === 'fr' ? 'Ingénieur Logiciel Senior' : 'Senior Software Engineer',
+            email: 'contact@walid.dev',
+            phone: '+212-XXX-XXXXXX', // Replace with actual phone
+            website: window.location.origin,
+            linkedin: 'https://linkedin.com/in/waliddev1',
+            github: 'https://github.com/waliddev1'
+        };
+
+        const vCard = `BEGIN:VCARD
+VERSION:3.0
+FN:${contactData.name}
+TITLE:${contactData.title}
+EMAIL:${contactData.email}
+TEL:${contactData.phone}
+URL:${contactData.website}
+URL;TYPE=LinkedIn:${contactData.linkedin}
+URL;TYPE=GitHub:${contactData.github}
+END:VCARD`;
+
+        // Try Web Share API first
+        if (navigator.share) {
+            navigator.share({
+                title: currentLang === 'fr' ? 'Contact Walid' : 'Contact Walid',
+                text: currentLang === 'fr' ? 'Découvrez mon portfolio et contactez-moi' : 'Check out my portfolio and get in touch',
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            // Fallback: Copy contact info to clipboard
+            navigator.clipboard.writeText(`${contactData.name}\n${contactData.title}\nEmail: ${contactData.email}\nSite: ${contactData.website}\nLinkedIn: ${contactData.linkedin}\nGitHub: ${contactData.github}`).then(() => {
+                // Show success message
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg';
+                notification.textContent = currentLang === 'fr' ? 'Informations de contact copiées!' : 'Contact information copied!';
+                document.body.appendChild(notification);
+                setTimeout(() => document.body.removeChild(notification), 3000);
+            }).catch(() => {
+                // Fallback: Download vCard
+                const blob = new Blob([vCard], { type: 'text/vcard' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'walid-contact.vcf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        }
+    }
+
+    // Add event listeners for share buttons
+    document.getElementById('mobile-share-btn').addEventListener('click', shareContact);
+    document.getElementById('mobile-share-menu-btn').addEventListener('click', () => {
+        closeMobileMenu();
+        shareContact();
+    });
+</script>
+</body></html>
